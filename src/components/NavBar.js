@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Model from './Model' 
 import '../componentStyles/NavBar.css'; 
 
 const Navbar = () => {
@@ -15,6 +16,7 @@ const Navbar = () => {
         <Link to="/search" className="nav-link">
           Search
         </Link>
+        <Model />
       </div>
     </nav>
   );

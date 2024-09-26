@@ -47,8 +47,8 @@ const AllWords = () => {
                   <Link to={`/words/${synonym}`}>{synonym}</Link>
                 </td>
               ))}
-              
-              {word.synonym.length < maxSynonyms &&
+
+              {word.synonym.slice(0, 7).length < maxSynonyms &&
                 Array.from({ length: maxSynonyms - word.synonym.length }).map((_, i) => (
                   <td key={`empty-${i}`} />
                 ))

@@ -20,6 +20,8 @@ const WordDetails = () => {
     return <div>Loading...</div>;
   }
 
+  console.log(wordDetail)
+
   return (
     <div className="word-details">
     <h1>{wordDetail.word}</h1>
@@ -29,6 +31,11 @@ const WordDetails = () => {
         <Link className="word-details-link" to={`/words/${syn}`}>{syn}</Link>
       ))}
       </div>
+      <h3>{wordDetail.transitive ? 'Transitive Synonyms:' : ''}</h3>
+      {wordDetail.transitive && wordDetail.transitive.map(tran => (
+        <Link className="word-details-link" to={`/words/${tran}`}>{tran}</Link>
+      ))
+      }
     </div>
   );
 }
