@@ -11,6 +11,7 @@ const AppRoutes = () => {
       <Route path="/words/:word" element={<WordDetails />} />
       <Route path="/add-word" element={<AddWord />} />
       <Route path="/search" element={<Search />} />
+      <Route path="/" />
     </Routes>
   )
 }

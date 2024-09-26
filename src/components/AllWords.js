@@ -42,17 +42,19 @@ const AllWords = () => {
                 <Link to={`/words/${word.word}`}>{word.word}</Link>
               </td>
 
-              {word.synonym.slice(0, 7).map((synonym, i) => (
-                <td key={i}>
-                  <Link to={`/words/${synonym}`}>{synonym}</Link>
-                </td>
-              ))}
-
-              {word.synonym.slice(0, 7).length < maxSynonyms &&
+              <td>
+                {word.synonym.slice(0, 7).map((synonym, i) => (
+                  <span key={i}>
+                    <Link to={`/words/${synonym}`}>{synonym}</Link>
+                    {i < word.synonym.length - 1 && ', '}
+                  </span>
+                ))}
+              </td>
+              {/* {word.synonym.slice(0, 7).length < maxSynonyms &&
                 Array.from({ length: maxSynonyms - word.synonym.length }).map((_, i) => (
                   <td key={`empty-${i}`} />
                 ))
-              }
+              } */}
             </tr>
           ))}
         </tbody>
