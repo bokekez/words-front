@@ -1,10 +1,11 @@
 import { showToastifySuccess, showToastifyError } from '../utils/toast';
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const allWordsApi = async (params) => {
   if(params) return getAllWordsSearch(params)
     
   try {
-    const response = await fetch('http://localhost:8000/words');
+    const response = await fetch(`${API_URL}/words`);
     const data = await response.json();
     return data; 
   } catch (error) {
@@ -15,7 +16,7 @@ export const allWordsApi = async (params) => {
 
 export const addWordApi = async (word, synonym) => {
   try {
-    const response = await fetch('http://localhost:8000/words', {
+    const response = await fetch(`${API_URL}/words`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -40,7 +41,7 @@ export const addWordApi = async (word, synonym) => {
 const getAllWordsSearch = async (search) => {
   try {
     const params = `${encodeURIComponent(search)}`
-    const response = await fetch(`http://localhost:8000/words?search=${params}`);
+    const response = await fetch(`${API_URL}/words?search=${params}`);
     const data = await response.json();
     if(data.message){
       showToastifyError(`Failed to fetch words because ${data.message}`, 'fetchError');
@@ -55,7 +56,7 @@ const getAllWordsSearch = async (search) => {
 
 export const getWordDetails = async (word) => {
   try{
-    const response = await fetch(`http://localhost:8000/words/${word}`)
+    const response = await fetch(`${API_URL}/words/${word}`)
     const data = await response.json();
     if(data.message){
       showToastifyError(`Failed to fetch words because ${data.message}`, 'fetchError');

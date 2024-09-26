@@ -1,7 +1,8 @@
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const getActiveModel = async () => { 
   try {
-    const response = await fetch('http://localhost:8000/modelSelector/activeModel');
+    const response = await fetch(`${API_URL}/modelSelector/activeModel`);
     const data = await response.json();
     return data; 
   } catch (error) {
@@ -11,7 +12,7 @@ export const getActiveModel = async () => {
 
 export const switchModel = async (model) => {
   try {
-    const response = await fetch('http://localhost:8000/modelSelector/switchModel', {
+    const response = await fetch(`${API_URL}/modelSelector/switchModel`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
