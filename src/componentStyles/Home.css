@@ -1,0 +1,41 @@
+@keyframes fadeInSpinPause {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(360deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  60% {
+    transform: rotate(360deg);
+  }
+  90% {
+    transform: rotate(720deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
+}
+
+.image-spin-fade {
+  width: 150px;
+  height: 150px;
+  opacity: 0;
+  animation: fadeInSpinPause 10s ease-in-out infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.home{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

@@ -3,6 +3,7 @@ import AllWords from '../components/AllWords';
 import WordDetails from '../components/WordsDetails';
 import AddWord from '../components/AddWord';
 import Search from '../components/Search';
+import Home from '../components/Home';
 
 const AppRoutes = () => {
   return(
@@ -11,7 +12,7 @@ const AppRoutes = () => {
       <Route path="/words/:word" element={<WordDetails />} />
       <Route path="/add-word" element={<AddWord />} />
       <Route path="/search" element={<Search />} />
-      <Route path="/" />
+      <Route path="/" element={<Home />}/>
     </Routes>
   )
 }

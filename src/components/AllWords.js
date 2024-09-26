@@ -23,8 +23,6 @@ const AllWords = () => {
     return <div>Loading...</div>;
   }
 
-  const maxSynonyms = Math.max(...words.map(word => word.synonym.length));
-
   return (
     <div className='all-words'>
       <h1>Word List</h1>
@@ -50,11 +48,6 @@ const AllWords = () => {
                   </span>
                 ))}
               </td>
-              {/* {word.synonym.slice(0, 7).length < maxSynonyms &&
-                Array.from({ length: maxSynonyms - word.synonym.length }).map((_, i) => (
-                  <td key={`empty-${i}`} />
-                ))
-              } */}
             </tr>
           ))}
         </tbody>
