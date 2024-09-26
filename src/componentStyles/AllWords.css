@@ -1,0 +1,32 @@
+.all-words{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+td a {
+  text-decoration: none;
+  color: #333;
+}
+
+td a:hover {
+  text-decoration: underline;
+}

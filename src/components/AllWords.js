@@ -1,43 +1,62 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+import { allWordsApi } from '../apiService/wordsApi';
+import '../componentStyles/AllWords.css'; 
 
 const AllWords = () => {
   const [words, setWords] = useState([]);  
   const [loading, setLoading] = useState(true);  
 
   useEffect(() => {
-    fetch('http://localhost:8000/words')
-      .then(response => response.json())
-      .then(data => {
-        setWords(data);  
-        setLoading(false);  
-      })
-      .catch(error => {
-        console.error('Error fetching words:', error);
-        setLoading(false);
-      });
+    const fetchWords = async () => {
+      const getWords = await allWordsApi(); 
+      if (getWords) {
+        setWords(getWords); 
+        setLoading(false); 
+      }
+    };
+    
+    fetchWords();
   }, []);  
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  const maxSynonyms = Math.max(...words.map(word => word.synonym.length));
+
   return (
-    <div>
+    <div className='all-words'>
       <h1>Word List</h1>
-      <ul>
-        {words.map((word) => (
-          <li key={word.id}>
-            <Link to={word.word}>{word.word}</Link>
-            <p>Synonyms:</p>
-            {word.synonym.map(synonym => (
-              <div>
-                <Link to={synonym}>{synonym}</Link>
-              </div>
-            ))}
-          </li>
-        ))}
-      </ul>
+      <table border="1" cellPadding="10">
+        <thead>
+          <tr>
+            <th>Word</th>
+            <th>Synonyms</th>
+          </tr>
+        </thead>
+        <tbody>
+          {words.length && words.map((word) => (
+            <tr key={word.id}>
+              <td>
+                <Link to={`/words/${word.word}`}>{word.word}</Link>
+              </td>
+
+              {word.synonym.slice(0, 7).map((synonym, i) => (
+                <td key={i}>
+                  <Link to={`/words/${synonym}`}>{synonym}</Link>
+                </td>
+              ))}
+              
+              {word.synonym.length < maxSynonyms &&
+                Array.from({ length: maxSynonyms - word.synonym.length }).map((_, i) => (
+                  <td key={`empty-${i}`} />
+                ))
+              }
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

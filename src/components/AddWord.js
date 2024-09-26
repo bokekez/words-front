@@ -1,7 +1,8 @@
-import React, { Fragment, useState } from 'react';
+import React, {  useState } from 'react';
 import '../componentStyles/AddWord.css'; 
 import Autocomplete from '../components/Autocomplete';
-import { showToastifySuccess, showToastifyError, showToastifyWarning } from '../utils/toast';
+import { showToastifyWarning } from '../utils/toast';
+import { addWordApi } from '../apiService/wordsApi';
 
 const AddWord = () => {
   const [word, setWord] = useState('');
@@ -21,30 +22,16 @@ const AddWord = () => {
       return;
     }
 
-    try {
-      const response = await fetch('http://localhost:8000/words', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          word,
-          synonym: synonym, 
-        }),
-      });
-
-      if (response.ok) {
-        showToastifySuccess(`${word} was added successfully!`, 'wordAdded');
-        setWord(''); 
-        setSynonym([]); 
-      } else {
-        const errorData = await response.json();
-        showToastifyError(`Error: ${errorData.message}`, 'addingError');
-      }
-    } catch (error) {
-      showToastifyError('Failed to add word.', 'wentWrong');
+    const addWord = addWordApi(word, synonym)
+    if(addWord){
+      setWord(''); 
+      setSynonym([]); 
     }
   };
+
+  const removeSynonym = (syn) =>{
+    setSynonym(synonym.filter(el => el !== syn))
+  }
 
   return (
     <div className="add-word-container">
@@ -60,22 +47,25 @@ const AddWord = () => {
           />
         </div>
         <div>
-          <label>Synonyms (autocomplete):</label>
+          <label>Find Synonyms:</label>
           <Autocomplete
             onSelect={addSynonym} 
           />
         </div>
+        <p>Synonyms:</p>
         {synonym.length ? (
           <div className="synonym-list">
-            <p>Synonyms:</p>
             {synonym.map(syn => (
-              <div>{syn}</div>
+              <div className="synonym-element" key={syn}>
+                <p>{syn}</p>
+                <button className="synonym-list-button" type="button" onClick={() => removeSynonym(syn)}>X</button>
+              </div>
             ))}
           </div>
         ) :
-        <Fragment/ >
+        <div>No synonyms to add</div>
         }
-        <button type="submit">Add Word</button>
+        <button className="add-word-button" type="submit">Add Word</button>
       </form>
     </div>
   );

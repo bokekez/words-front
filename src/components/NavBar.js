@@ -12,6 +12,9 @@ const Navbar = () => {
         <Link to="/add-word" className="nav-link">
           Add Word
         </Link>
+        <Link to="/search" className="nav-link">
+          Search
+        </Link>
       </div>
     </nav>
   );

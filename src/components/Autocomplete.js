@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../componentStyles/Autocomplete.css';
-import { showToastifyError } from '../utils/toast';
+import { allWordsApi } from '../apiService/wordsApi';
 
 const Autocomplete = ({ onSelect }) => {
   const [inputValue, setInputValue] = useState('');
@@ -9,14 +9,8 @@ const Autocomplete = ({ onSelect }) => {
   useEffect(() => {
     const fetchWords = async () => {
       if(!inputValue || inputValue.length < 2) return;
-      try {
-        const params = `${encodeURIComponent(inputValue)}`
-        const response = await fetch(`http://localhost:8000/words?search=${params}`);
-        const data = await response.json();
-        setSuggestions(data.map(word => word.word));
-      } catch (error) {
-        showToastifyError('Failed to fetch words.', 'fetchError');
-      }
+      const result = await allWordsApi(inputValue)
+      if(result && result.length) setSuggestions(result)
     };
 
     fetchWords();

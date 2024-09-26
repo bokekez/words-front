@@ -1,24 +1,16 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import AllWords from './components/AllWords';
-import WordDetails from './components/WordsDetails';
-import AddWord from './components/AddWord';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/NavBar';
 import { ToastContainer } from 'react-toastify';
+import AppRoutes from './routes/routes';
 
 function App() {
   return (
     <Router>
-      <div>
         <Navbar />
         <div className="content">
-          <Routes>
-            <Route path="/words" element={<AllWords />} />
-            <Route path="/words/:word" element={<WordDetails />} />
-            <Route path="/add-word" element={<AddWord />} />
-          </Routes>
+          <AppRoutes />
           <ToastContainer />
         </div>
-      </div>
     </Router>
   );
 }
