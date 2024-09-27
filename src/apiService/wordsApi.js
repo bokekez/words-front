@@ -66,3 +66,25 @@ export const getWordDetails = async (word) => {
     showToastifyError(`Failed to fetch words because ${error.message}`, 'fetchError');
   }
 }
+
+export const deleteWord = async (word) => {
+  console.log(word)
+  try {
+    const response = await fetch(`${API_URL}/words/${word}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
+
+    if (!data.message.includes('successfully')) {
+      showToastifyError(`Failed to delete word because ${data.message}`, 'deleteError');
+      return null;
+    }
+    showToastifySuccess(`Word '${word}' deleted successfully!`, 'deleteSuccess');
+    return data;
+  } catch (error) {
+    showToastifyError(`Failed to delete word because ${error.message}`, 'deleteError');
+  }
+}

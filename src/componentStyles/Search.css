@@ -10,6 +10,7 @@
   height: 80%;
   padding-bottom: 50vh;
   margin-bottom: 2rem;
+  min-height: 50vh;
 }
 
 .search-page-basic-button{

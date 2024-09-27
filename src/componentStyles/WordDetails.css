@@ -29,3 +29,30 @@
   border: 2px solid rgb(40, 218, 40);
   transition: 1s;
 }
+
+.word-details-edit{
+  height: 1rem;
+}
+
+.word-details-button{
+  height: 2rem;
+  width: 8rem;
+  background-color: lightgrey;
+  padding: 5px;
+  margin: 10px;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.word-details-button:hover{
+  background-color: rgb(164, 164, 164);
+}  
+
+.word-details-buttons{
+  display: flex;
+}

@@ -74,7 +74,7 @@ const AddWord = () => {
             {synonym.map(syn => (
               <div className="synonym-element" key={syn}>
                 <p className="synonym-element-syn">{syn.word}</p>
-                <p className="synonym-element-syn-synonym">{syn.synonym.join(', ')}</p>
+                <p className="synonym-element-syn-synonym">Synonyms of {syn.word}: {syn.synonym.join(', ')}</p>
                 <button className="synonym-list-button" type="button" onClick={() => removeSynonym(syn)}>X</button>
               </div>
             ))}
