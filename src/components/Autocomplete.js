@@ -44,7 +44,7 @@ const Autocomplete = ({ onSelect }) => {
               onClick={() => handleSelect(suggestion)}
               className="suggestion-item"
             >
-              {suggestion}
+              {suggestion.word}
             </li>
           ))}
         </ul>

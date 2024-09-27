@@ -28,7 +28,7 @@
   width: 150px;
   height: 150px;
   opacity: 0;
-  animation: fadeInSpinPause 10s ease-in-out infinite;
+  animation: fadeInSpinPause 20s ease-in-out infinite;
   animation-timing-function: ease-in-out;
 }
 

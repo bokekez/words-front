@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { getActiveModel, switchModel } from '../apiService/modelApi';
 import '../componentStyles/Model.css';
+import { ModelContext } from '../context/modelContext';
 
 const Model = () => {
-  const [model, setModel] = useState('')
+  const { model, setModel } = useContext(ModelContext);
 
   useEffect(() => {
     const getModel = async () => {
@@ -13,9 +14,8 @@ const Model = () => {
       }
     };
 
-    // switchModel()
-
     getModel()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [model])
 
   const handleModelChange = (value) => {

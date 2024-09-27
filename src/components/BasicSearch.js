@@ -37,7 +37,7 @@ const BasicSearch = () => {
       <button onClick={handleSearch}>Search</button>
       <div>
       {searchResult.length > 0 && searchResult.map(word => (
-        <Link to={`/words/${word}`} className="basic-searchearch-link">{word}</Link>
+        <Link to={`/words/${word.word}`} className="basic-searchearch-link">{word.word}</Link>
       ))}
       </div>
     </div>

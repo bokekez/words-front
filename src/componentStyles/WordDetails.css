@@ -17,7 +17,10 @@
   color: rgb(25, 184, 158);
   border: 2px solid rgb(29, 163, 29);
   padding: 1rem;
-  border-radius: 50%;
+  border-radius: 10px;
+  width: 8rem;
+  display: inline-block;
+  text-align: center;
 }
 
 .word-details-link:hover{

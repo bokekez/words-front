@@ -1,12 +1,14 @@
-import React, {  useState } from 'react';
+import React, {  useState, useContext } from 'react';
 import '../componentStyles/AddWord.css'; 
 import Autocomplete from '../components/Autocomplete';
 import { showToastifyWarning } from '../utils/toast';
 import { addWordApi } from '../apiService/wordsApi';
+import { ModelContext } from '../context/modelContext';
 
 const AddWord = () => {
   const [word, setWord] = useState('');
   const [synonym, setSynonym] = useState([]);
+  const { model } = useContext(ModelContext);
 
   const addSynonym = (selectedWord) => {
     if (!synonym.includes(selectedWord)) {
@@ -22,11 +24,25 @@ const AddWord = () => {
       return;
     }
 
-    const addWord = addWordApi(word, synonym)
-    if(addWord){
-      setWord(''); 
-      setSynonym([]); 
+    if(model === 'basic'){
+      const flattenSyn = synonym.flatMap(item => [...item.synonym, item.word])
+      const synWithoutDups = [...new Set(flattenSyn)];
+      const addWord = addWordApi(word, synWithoutDups)
+      if(addWord){
+        setWord(''); 
+        setSynonym([]); 
+      }
     }
+
+    if(model === 'transitive'){
+      const synonyms = synonym.map(el => el.word)
+      const addWord = addWordApi(word, synonyms)
+      if(addWord){
+        setWord(''); 
+        setSynonym([]); 
+      }
+    }
+    
   };
 
   const removeSynonym = (syn) =>{
@@ -57,7 +73,8 @@ const AddWord = () => {
           <div className="synonym-list">
             {synonym.map(syn => (
               <div className="synonym-element" key={syn}>
-                <p>{syn}</p>
+                <p className="synonym-element-syn">{syn.word}</p>
+                <p className="synonym-element-syn-synonym">{syn.synonym.join(', ')}</p>
                 <button className="synonym-list-button" type="button" onClick={() => removeSynonym(syn)}>X</button>
               </div>
             ))}

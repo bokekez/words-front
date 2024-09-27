@@ -50,7 +50,7 @@
 }
 
 .synonym-list-button{
-  background-color: #83171e;
+  background-color: #b31b25;
   width: 2rem;
   height: 2rem;
   color: white;
@@ -64,4 +64,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.synonym-element-syn{
+  font-size: large;
+  font-weight: bold;
+}
+
+.synonym-element-syn-synonym{
+  font-size: small;
 }

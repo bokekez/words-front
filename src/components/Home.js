@@ -1,5 +1,5 @@
 import React from 'react';
-import reeinvent_logo from '../utils/reeinvent_logo.jpg'
+import reeinvent_logo from '../resources/reeinvent_logo.jpg'
 import '../componentStyles/Home.css';
 
 const Home = () => {
@@ -13,7 +13,6 @@ const Home = () => {
       <h1>Words</h1>
     </div>
   )
-
 }
 
 export default Home;

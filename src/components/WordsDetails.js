@@ -20,8 +20,6 @@ const WordDetails = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(wordDetail)
-
   return (
     <div className="word-details">
     <h1>{wordDetail.word}</h1>

@@ -44,11 +44,10 @@ const getAllWordsSearch = async (search) => {
     const response = await fetch(`${API_URL}/words?search=${params}`);
     const data = await response.json();
     if(data.message){
-      showToastifyError(`Failed to fetch words because ${data.message}`, 'fetchError');
+      // showToastifyError(`Failed to fetch words because ${data.message}`, 'fetchError');
       return null
     } 
-    const result = data.map(word => word.word);
-    return result
+    return data
   } catch (error) {
     showToastifyError(`Failed to fetch words because ${error.message}`, 'fetchError');
   }
