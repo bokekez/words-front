@@ -59,10 +59,12 @@ const WordDetails = () => {
       ))}
       </div>
       <h3>{wordDetail.transitive ? 'Transitive Synonyms:' : ''}</h3>
+      <div>
       {wordDetail.transitive && wordDetail.transitive.map((tran, i) => (
         <Link className="word-details-link" to={`/words/${tran}`} key={i}>{tran}</Link>
       ))
       }
+      </div>
       {deleteDialog && (
         <Delete wordParam={wordDetail.word} onClose={handleFormClose}/>
       )}

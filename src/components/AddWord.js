@@ -70,7 +70,7 @@ const AddWord = () => {
         </div>
         <p>Synonyms:</p>
         {synonym.length ? (
-          <div className="synonym-list">
+          <div>
             {synonym.map(syn => (
               <div className="synonym-element" key={syn}>
                 <p className="synonym-element-syn">{syn.word}</p>

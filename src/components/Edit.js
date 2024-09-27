@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../componentStyles/EditDelete.css';
 import { editWord } from '../apiService/wordsApi'; // You'll create this API call in the backend
 import { useNavigate } from 'react-router-dom';
@@ -60,6 +60,7 @@ const Edit = ({ wordParam: word, onClose }) => {
             </button>
           </div>
         ))}
+        <p>Find Synonyms:</p>
         <Autocomplete
             onSelect={addSynonym} 
           />
@@ -67,7 +68,7 @@ const Edit = ({ wordParam: word, onClose }) => {
           <button className="full-screen-cancel" onClick={handleCancel}>
             Cancel
           </button>
-          <button className="full-screen-submit" onClick={handleEdit}>
+          <button className="full-screen-cancel" onClick={handleEdit}>
             Edit
           </button>
         </div>
