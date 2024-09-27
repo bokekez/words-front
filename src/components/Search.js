@@ -17,7 +17,7 @@ const Search = () => {
   };
 
   const navigateToWord = (value) => {
-    navigate(`/words/${value}`)
+    navigate(`/words/${value.word}`)
   }
 
   return (
