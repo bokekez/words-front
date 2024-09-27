@@ -12,15 +12,12 @@
 .header-text {
   font-size: 3rem;
   opacity: 0;
-  position: absolute;
-  bottom: 20%; 
   animation: fadeInMoveDown 5s forwards ease-in-out;
 }
 
 .logo {
   width: 150px;
   opacity: 0;
-  position: absolute;
   top: 30%; 
   animation: fadeInOutLogo 30s infinite ease-in-out;
 }
@@ -45,6 +42,9 @@
   }
   20%, 30% {
     opacity: 0.6;
+  }
+  30%, 40% {
+    opacity: 0.8;
   }
   40%, 50% {
     opacity: 1;

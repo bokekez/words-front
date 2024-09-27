@@ -25,7 +25,7 @@ const Edit = ({ wordParam: word, onClose }) => {
     try {
       const result = await editWord(word.word, newWord, synonyms);
       if (result) {
-        navigate(0);
+        navigate(`/words/${newWord}`);
         handleCancel();
       }
     } catch (error) {
