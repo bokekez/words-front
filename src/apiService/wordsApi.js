@@ -88,3 +88,27 @@ export const deleteWord = async (word) => {
     showToastifyError(`Failed to delete word because ${error.message}`, 'deleteError');
   }
 }
+
+export const editWord = async (word, newWord, newSynonyms) => {
+  try {
+    const response = await fetch(`${API_URL}/words/${word}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        newWord: newWord,
+        newSynonyms: newSynonyms, 
+      }),
+    });
+
+    if (response.ok) {
+      showToastifySuccess(`${word} was edited successfully!`, 'wordEdited');
+      return true
+    } 
+    const errorData = await response.json();
+    showToastifyError(`Error: ${errorData.message}`, 'addingError');
+  } catch (error) {
+    showToastifyError('Failed to add word.', 'wentWrong');
+  }
+}

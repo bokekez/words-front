@@ -5,11 +5,13 @@ import '../componentStyles/WordDetails.css'
 import editPng from '../resources/edit.png'
 import deletePng from '../resources/delete.png'
 import Delete from './Delete';
+import Edit from './Edit';
 
 const WordDetails = () => {
   const { word } = useParams();
   const [wordDetail, setWordDetail] = useState(null);
   const [deleteDialog, setDeleteDialog] = useState(false)
+  const [editDialog, setEditDialog] = useState(false)
 
   useEffect(() => {
     const fetchWordDetails = async () => {
@@ -21,11 +23,16 @@ const WordDetails = () => {
   }, [word]);
 
   const handleDelete = () =>{
-    setDeleteDialog(deleteDialog === false ? true : false)
+    setDeleteDialog(true)
+  }
+
+  const handleEdit = () =>{
+    setEditDialog(true)
   }
 
   const handleFormClose = () => {
     setDeleteDialog(false)
+    setEditDialog(false)
   }
 
   if (!wordDetail) {
@@ -36,7 +43,7 @@ const WordDetails = () => {
     <div className="word-details">
     <h1>{wordDetail.word}</h1>
       <div className="word-details-buttons">
-        <button className="word-details-button">
+        <button onClick={handleEdit} className="word-details-button">
           Edit
           <img src={editPng} alt="Edit" className="word-details-edit"/>
         </button>
@@ -58,6 +65,9 @@ const WordDetails = () => {
       }
       {deleteDialog && (
         <Delete wordParam={wordDetail.word} onClose={handleFormClose}/>
+      )}
+      {editDialog && (
+        <Edit wordParam={wordDetail} onClose={handleFormClose}/>
       )}
     </div>
   );

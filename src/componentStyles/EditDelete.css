@@ -51,3 +51,40 @@
   display: flex;
   justify-content: space-between;
 }
+
+.full-screen-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.synonym-list {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.remove-synonym-btn {
+  background-color: #ff4c4c;
+  border: none;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.add-synonym-btn {
+  margin-top: 10px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.full-screen-submit {
+  background-color: #4CAF50;
+  padding: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
