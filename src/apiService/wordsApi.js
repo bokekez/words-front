@@ -104,7 +104,7 @@ export const editWord = async (word, newWord, newSynonyms) => {
 
     if (response.ok) {
       showToastifySuccess(`${word} was edited successfully!`, 'wordEdited');
-      return true
+      return response.json()
     } 
     const errorData = await response.json();
     showToastifyError(`Error: ${errorData.message}`, 'addingError');

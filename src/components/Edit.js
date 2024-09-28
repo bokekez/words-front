@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../componentStyles/EditDelete.css';
-import { editWord } from '../apiService/wordsApi'; // You'll create this API call in the backend
+import { editWord } from '../apiService/wordsApi'; 
 import { useNavigate } from 'react-router-dom';
 import Autocomplete from '../components/Autocomplete';
 

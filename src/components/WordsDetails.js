@@ -20,7 +20,7 @@ const WordDetails = () => {
     }
     
     fetchWordDetails()
-  }, [word]);
+  }, [word, editDialog]);
 
   const handleDelete = () =>{
     setDeleteDialog(true)
@@ -30,7 +30,7 @@ const WordDetails = () => {
     setEditDialog(true)
   }
 
-  const handleFormClose = () => {
+  const handleFormClose = (value) => {
     setDeleteDialog(false)
     setEditDialog(false)
   }
