@@ -39,8 +39,8 @@ const Model = () => {
       </div>
       {showInfo && (
       <div onClick={handleInfo} className="model-info">
-        <p>Basic model - Words and synonyms are symetrical, if A is a synonym of B and B is a synonym of C, then A, B and C are all syonoyms</p>
-        <p>Transitive - Words and synonyms are not symetrical, if A is a synonym of B and B is a synonym of C, then A and C are transitive synoyms</p>
+        <p>Basic model: Words and synonyms are symetrical, if A is a synonym of B and B is a synonym of C, then A, B and C are all syonoyms.</p>
+        <p>Transitive model: Words and synonyms are not symetrical, if A is a synonym of B and B is a synonym of C, then A and C are transitive synoyms.</p>
         <button>X</button>
       </div>
       )}

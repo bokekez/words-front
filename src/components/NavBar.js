@@ -7,16 +7,16 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <NavLink to="/" className="nav-link" activeClassName="active">
+        <NavLink to="/" className={`nav-link (navData) => (navData.isActive ? "active" : 'none'`}>
           Home
         </NavLink>
-        <NavLink to="/words" className="nav-link" activeClassName="active"> 
+        <NavLink to="/words" className={`nav-link (navData) => (navData.isActive ? "active" : 'none'`} > 
           Words
         </NavLink>
-        <NavLink to="/add-word" className="nav-link" activeClassName="active">
+        <NavLink to="/add-word" className={`nav-link (navData) => (navData.isActive ? "active" : 'none'`} >
           Add Word
         </NavLink>
-        <NavLink to="/search" className="nav-link" activeClassName="active">
+        <NavLink to="/search" className={`nav-link (navData) => (navData.isActive ? "active" : 'none'`} >
           Search
         </NavLink>
         <Model />

@@ -54,8 +54,9 @@ const AddWord = () => {
       <h2>Add a New Word</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Word:</label>
+          <label htmlFor="word-input">Word:</label>
           <input
+            id="word-input"
             type="text"
             value={word}
             onChange={(e) => setWord(e.target.value)}

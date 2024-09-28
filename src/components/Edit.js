@@ -49,7 +49,7 @@ const Edit = ({ wordParam: word, onClose }) => {
           className="full-screen-input"
         />
         <label>Edit Synonyms:</label>
-        {synonyms.map((syn, index) => (
+        {synonyms && synonyms.map((syn, index) => (
           <div key={index} className="synonym-list">
             <span>{syn}</span>
             <button

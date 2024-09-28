@@ -1,5 +1,5 @@
 import React from 'react';
-import reeinvent_logo from '../resources/reeinvent_logo.jpg'
+import reeinvent_logo from '../resources/reeinvent_logo.png'
 import '../componentStyles/Home.css';
 
 const Home = () => {
