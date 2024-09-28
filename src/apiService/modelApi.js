@@ -1,3 +1,4 @@
+import { showToastifySuccess, showToastifyError } from '../utils/toast';
 const API_URL = process.env.REACT_APP_API_URL;
 
 export const getActiveModel = async () => { 
@@ -23,12 +24,13 @@ export const switchModel = async (model) => {
     });
 
     if (response.ok) {
-      // showToastifySuccess(`${word} was added successfully!`, 'wordAdded');
-      return model
+      const data = await response.json()
+      showToastifySuccess(`${data.message}!`, model);
+      return data
     } 
-    // const errorData = await response.json();
-    // showToastifyError(`Error: ${errorData.message}`, 'addingError');
+    const errorData = await response.json();
+    showToastifyError(`Error: ${errorData.message}`, 'addingError');
   } catch (error) {
-    // showToastifyError('Failed to add word.', 'wentWrong');
+    showToastifyError('Failed to add word.', 'wentWrong');
   }
 }

@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { getActiveModel, switchModel } from '../apiService/modelApi';
 import '../componentStyles/Model.css';
 import { ModelContext } from '../context/modelContext';
-import questionMark from '../resources/question.png'
+import questionMark from '../resources/question.png';
+import { useNavigate } from 'react-router-dom';
 
 const Model = () => {
   const { model, setModel } = useContext(ModelContext);
   const[showInfo, setShowInfo] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getModel = async () => {
@@ -20,9 +22,12 @@ const Model = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [model])
 
-  const handleModelChange = (value) => {
-    switchModel(value)
-    setModel(value)
+  const handleModelChange = async (value) => {
+    const result = await switchModel(value)
+    if(result){
+      setModel(value)
+      navigate(0);
+    }
   }
 
   const handleInfo = () => {
