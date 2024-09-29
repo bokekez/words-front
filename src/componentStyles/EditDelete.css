@@ -112,3 +112,7 @@
   margin-bottom: 2rem;
   margin-top: 7px;
 }
+
+.full-screen .synonym-element-syn-synonym {
+  border: none;
+}

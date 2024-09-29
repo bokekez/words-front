@@ -85,10 +85,10 @@
 }
 
 .add-word-container .suggestions-list {
-  background-color: #e3fee9;
+  background-color: #fefee3;
   width: 100%;
 }
 
 .add-word-container .suggestions-list li:hover {
-  background-color: #a1fa81;
+  background-color: #f8f8c7;
 }

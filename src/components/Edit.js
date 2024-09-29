@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../componentStyles/EditDelete.css';
 import { editWord } from '../apiService/wordsApi';
 import { useNavigate } from 'react-router-dom';
 import Autocomplete from '../components/Autocomplete';
+import { ModelContext } from '../context/modelContext';
 
 const Edit = ({ wordParam: word, onClose }) => {
   const [newWord, setNewWord] = useState(word.word);
-  const [synonyms, setSynonyms] = useState(word.synonym);
+  const [synonyms, setSynonyms] = useState(
+    word.synonym.map((el) => ({ word: el }))
+  );
+  const { model } = useContext(ModelContext);
 
   const navigate = useNavigate();
 
+  console.log(synonyms);
+
   const addSynonym = (selectedWord) => {
     if (!synonyms.includes(selectedWord.word)) {
-      setSynonyms([...synonyms, selectedWord.word]);
+      setSynonyms([...synonyms, selectedWord]);
     }
   };
 
@@ -22,11 +28,33 @@ const Edit = ({ wordParam: word, onClose }) => {
 
   const handleEdit = async (e) => {
     e.stopPropagation();
+
     try {
-      const result = await editWord(word.word, newWord, synonyms);
-      if (result) {
-        navigate(`/words/${newWord}`);
-        handleCancel();
+      if (model === 'basic') {
+        const flattenedArray = synonyms.reduce((acc, obj) => {
+          acc.push(obj.word);
+
+          if (obj.synonym) {
+            acc.push(...obj.synonym);
+          }
+
+          return acc;
+        }, []);
+        const synWithoutDups = [...new Set(flattenedArray)];
+        const result = await editWord(word.word, newWord, synWithoutDups);
+        if (result) {
+          navigate(`/words/${newWord}`);
+          handleCancel();
+        }
+      }
+
+      if (model === 'transitive') {
+        const onlySyns = synonyms.map((el) => el.word);
+        const result = await editWord(word.word, newWord, onlySyns);
+        if (result) {
+          navigate(`/words/${newWord}`);
+          handleCancel();
+        }
       }
     } catch (error) {
       console.error('Failed to update the word', error);
@@ -52,7 +80,12 @@ const Edit = ({ wordParam: word, onClose }) => {
         {synonyms &&
           synonyms.map((syn, index) => (
             <div key={index} className="synonym-list">
-              <span>{syn}</span>
+              <span>{syn.word}</span>
+              {syn.synonym && (
+                <p className="synonym-element-syn-synonym">
+                  Synonyms of {syn.word}: {syn.synonym.join(', ')}
+                </p>
+              )}
               <button
                 className="remove-synonym-btn"
                 onClick={() => handleRemoveSynonym(syn)}
