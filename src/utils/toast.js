@@ -9,11 +9,14 @@ const options = {
   pauseOnHover: true,
   draggable: true,
   theme: 'light',
-  toastId: 'default'
+  toastId: 'default',
 };
 
-export const showToastifyError = (error, popUpId) => toast.error(error, { ...options, toastId: popUpId });
+export const showToastifyError = (error, popUpId) =>
+  toast.error(error, { ...options, toastId: popUpId });
 
-export const showToastifySuccess = (message, popUpId) => toast.success(message, { ...options, toastId: popUpId });
+export const showToastifySuccess = (message, popUpId) =>
+  toast.success(message, { ...options, toastId: popUpId });
 
-export const showToastifyWarning = (message, popUpId) => toast.warning(message, { ...options, toastId: popUpId });
+export const showToastifyWarning = (message, popUpId) =>
+  toast.warning(message, { ...options, toastId: popUpId });

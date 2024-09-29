@@ -8,9 +8,9 @@ const Autocomplete = ({ onSelect }) => {
 
   useEffect(() => {
     const fetchWords = async () => {
-      if(!inputValue || inputValue.length < 2) return;
-      const result = await allWordsApi(inputValue)
-      if(result && result.length) setSuggestions(result)
+      if (!inputValue || inputValue.length < 2) return;
+      const result = await allWordsApi(inputValue);
+      if (result && result.length) setSuggestions(result);
     };
 
     fetchWords();
@@ -22,10 +22,10 @@ const Autocomplete = ({ onSelect }) => {
   };
 
   const handleSelect = (item) => {
-    if(!item) return
+    if (!item) return;
     onSelect(item);
-    setInputValue(''); 
-    setSuggestions([]); 
+    setInputValue('');
+    setSuggestions([]);
   };
 
   return (

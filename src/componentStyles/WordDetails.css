@@ -1,4 +1,4 @@
-.word-details{
+.word-details {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,11 +7,11 @@
   margin-right: 10%;
 }
 
-.word-details h1{
+.word-details h1 {
   font-size: 4rem;
 }
 
-.word-details-link{
+.word-details-link {
   text-decoration: none;
   margin: 3px;
   color: rgb(25, 184, 158);
@@ -23,18 +23,18 @@
   text-align: center;
 }
 
-.word-details-link:hover{
+.word-details-link:hover {
   background-color: rgba(110, 247, 201, 0.436);
   color: rgb(15, 155, 131);
   border: 2px solid rgb(40, 218, 40);
   transition: 1s;
 }
 
-.word-details-edit{
+.word-details-edit {
   height: 1rem;
 }
 
-.word-details-button{
+.word-details-button {
   height: 2rem;
   width: 8rem;
   background-color: lightgrey;
@@ -49,10 +49,10 @@
   align-items: center;
 }
 
-.word-details-button:hover{
+.word-details-button:hover {
   background-color: rgb(164, 164, 164);
-}  
+}
 
-.word-details-buttons{
+.word-details-buttons {
   display: flex;
 }

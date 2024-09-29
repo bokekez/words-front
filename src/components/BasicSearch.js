@@ -9,20 +9,20 @@ const BasicSearch = () => {
 
   useEffect(() => {
     const fetchWords = async () => {
-      if(!searchTerm) return setSearch(false);
-      const result = await allWordsApi(searchTerm)
-      if(result && result.length) {
+      if (!searchTerm) return setSearch(false);
+      const result = await allWordsApi(searchTerm);
+      if (result && result.length) {
         setSearchResult(result);
-        return setSearch(false);
       }
+      return setSearch(false);
     };
 
     fetchWords();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
-  const handleSearch =async () => {
-    if(!search) setSearch(true)
+  const handleSearch = async () => {
+    if (!search) setSearch(true);
   };
 
   return (
@@ -32,12 +32,24 @@ const BasicSearch = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Enter a word to search..."
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleSearch();
+          }
+        }}
       />
       <button onClick={handleSearch}>Search</button>
       <div>
-      {searchResult.length > 0 && searchResult.map(word => (
-        <Link to={`/words/${word.word}`} key={word.id} className="basic-searchearch-link">{word.word}</Link>
-      ))}
+        {searchResult.length > 0 &&
+          searchResult.map((word) => (
+            <Link
+              to={`/words/${word.word}`}
+              key={word.id}
+              className="basic-searchearch-link"
+            >
+              {word.word}
+            </Link>
+          ))}
       </div>
     </div>
   );

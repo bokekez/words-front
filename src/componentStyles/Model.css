@@ -19,11 +19,11 @@
   margin: 0;
 }
 
-.model button.active{
-  background-color: #4CAF50;
+.model button.active {
+  background-color: #4caf50;
 }
 
-.model-question{
+.model-question {
   width: 7%;
   align-self: center;
   justify-self: center;
@@ -34,37 +34,37 @@
   cursor: pointer;
 }
 
-.model-container{
+.model-container {
   display: flex;
   justify-content: center;
 }
 
-.model-info{
+.model-info {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   position: absolute;
   margin-top: 3rem;
-  background-color: #b9e9d1;
+  background-color: #c4d3cb;
   width: 16rem;
   height: 16rem;
   border-radius: 10px;
   border: 0.5px solid black;
 }
 
-.model-info button{
+.model-info button {
   background: none;
   width: 1.5rem;
   text-align: center;
   cursor: pointer;
 }
 
-.model-info button:hover{
+.model-info button:hover {
   background-color: greenyellow;
 }
 
-.model-info p{
+.model-info p {
   color: black;
   margin: 10px;
 }

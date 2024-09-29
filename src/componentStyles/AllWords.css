@@ -1,4 +1,4 @@
-.all-words{
+.all-words {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,14 +13,15 @@ table {
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   text-align: left;
   padding: 8px;
 }
 
 th {
   width: 50%;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 

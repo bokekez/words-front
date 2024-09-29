@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import '../componentStyles/EditDelete.css';
-import { editWord } from '../apiService/wordsApi'; 
+import { editWord } from '../apiService/wordsApi';
 import { useNavigate } from 'react-router-dom';
 import Autocomplete from '../components/Autocomplete';
 
 const Edit = ({ wordParam: word, onClose }) => {
   const [newWord, setNewWord] = useState(word.word);
-  const [synonyms, setSynonyms] = useState(word.synonym); 
+  const [synonyms, setSynonyms] = useState(word.synonym);
 
   const navigate = useNavigate();
 
@@ -29,12 +29,12 @@ const Edit = ({ wordParam: word, onClose }) => {
         handleCancel();
       }
     } catch (error) {
-      console.error("Failed to update the word", error);
+      console.error('Failed to update the word', error);
     }
   };
 
   const handleRemoveSynonym = (syn) => {
-    setSynonyms(synonyms.filter(s => s !== syn));
+    setSynonyms(synonyms.filter((s) => s !== syn));
   };
 
   return (
@@ -49,21 +49,20 @@ const Edit = ({ wordParam: word, onClose }) => {
           className="full-screen-input"
         />
         <label>Edit Synonyms:</label>
-        {synonyms && synonyms.map((syn, index) => (
-          <div key={index} className="synonym-list">
-            <span>{syn}</span>
-            <button
-              className="remove-synonym-btn"
-              onClick={() => handleRemoveSynonym(syn)}
-            >
-              Remove
-            </button>
-          </div>
-        ))}
+        {synonyms &&
+          synonyms.map((syn, index) => (
+            <div key={index} className="synonym-list">
+              <span>{syn}</span>
+              <button
+                className="remove-synonym-btn"
+                onClick={() => handleRemoveSynonym(syn)}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
         <p>Find Synonyms:</p>
-        <Autocomplete
-            onSelect={addSynonym} 
-          />
+        <Autocomplete onSelect={addSynonym} />
         <div className="full-screen-form-buttons">
           <button className="full-screen-cancel" onClick={handleCancel}>
             Cancel

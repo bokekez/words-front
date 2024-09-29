@@ -12,12 +12,14 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock('../apiService/wordsApi', () => ({
-  allWordsApi: jest.fn(), 
+  allWordsApi: jest.fn(),
 }));
 
 describe('Search Component', () => {
   test('renders and handles search input', async () => {
-    allWordsApi.mockResolvedValueOnce([{ id: 1, word: 'testSearch', synonym: ['exampleSynonym'] }]);
+    allWordsApi.mockResolvedValueOnce([
+      { id: 1, word: 'testSearch', synonym: ['exampleSynonym'] },
+    ]);
 
     render(
       <MemoryRouter>
@@ -34,16 +36,15 @@ describe('Search Component', () => {
     fireEvent.click(searchButton);
 
     await waitFor(() => {
-      expect(allWordsApi).toHaveBeenCalledWith('testSearch');  
+      expect(allWordsApi).toHaveBeenCalledWith('testSearch');
     });
 
     const test = () => {
       expect(screen.getByText('testSearch')).toBeInTheDocument();
-    }
+    };
 
     await waitFor(() => {
       test();
-    });  
+    });
   });
 });
-

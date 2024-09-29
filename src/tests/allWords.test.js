@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import AllWords from '../components/AllWords';
 import '@testing-library/jest-dom';
-import { allWordsApi } from '../apiService/wordsApi'; 
+import { allWordsApi } from '../apiService/wordsApi';
 import { MemoryRouter } from 'react-router-dom';
 
 jest.mock('../apiService/wordsApi', () => ({
@@ -21,11 +21,11 @@ describe('AllWords Component', () => {
       <MemoryRouter>
         <AllWords />
       </MemoryRouter>
-      );
+    );
 
     await waitFor(() => {
       expect(allWordsApi).toHaveBeenCalled();
-    });  
+    });
 
     const test = () => {
       expect(screen.getByText('test2')).toBeInTheDocument();
@@ -33,10 +33,10 @@ describe('AllWords Component', () => {
       expect(screen.getByText(/syn2/i)).toBeInTheDocument();
       expect(screen.getByText(/syn3/i)).toBeInTheDocument();
       expect(screen.getByText(/syn4/i)).toBeInTheDocument();
-    }
+    };
 
     await waitFor(() => {
       test();
-    });  
+    });
   });
 });

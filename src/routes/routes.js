@@ -6,15 +6,15 @@ import Search from '../components/Search';
 import Home from '../components/Home';
 
 const AppRoutes = () => {
-  return(
+  return (
     <Routes>
       <Route path="/words" element={<AllWords />} />
       <Route path="/words/:word" element={<WordDetails />} />
       <Route path="/add-word" element={<AddWord />} />
       <Route path="/search" element={<Search />} />
-      <Route path="/" element={<Home />}/>
+      <Route path="/" element={<Home />} />
     </Routes>
-  )
-}
+  );
+};
 
 export default AppRoutes;

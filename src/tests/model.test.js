@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Model from '../components/Model';
 import '@testing-library/jest-dom/extend-expect';
-import { ModelContext } from '../context/modelContext'; 
+import { ModelContext } from '../context/modelContext';
 import { switchModel, getActiveModel } from '../apiService/modelApi';
 
 jest.mock('../apiService/modelApi', () => ({
@@ -9,9 +9,15 @@ jest.mock('../apiService/modelApi', () => ({
   getActiveModel: jest.fn().mockResolvedValue('basic'),
 }));
 
+const mockUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockUsedNavigate,
+}));
+
 const MockModelProvider = ({ children }) => {
-  const mockSetModel = jest.fn(); 
-  const model = 'basic'; 
+  const mockSetModel = jest.fn();
+  const model = 'basic';
 
   return (
     <ModelContext.Provider value={{ model, setModel: mockSetModel }}>
@@ -28,7 +34,7 @@ describe('Model Component', () => {
       </MockModelProvider>
     );
 
-    expect(screen.getByText(/basic/i)).toBeInTheDocument(); 
+    expect(screen.getByText(/basic/i)).toBeInTheDocument();
   });
 
   test('renders current model after get request', async () => {

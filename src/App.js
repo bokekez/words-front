@@ -8,11 +8,11 @@ function App() {
   return (
     <ModelProvider>
       <Router>
-          <Navbar />
-          <div className="content">
-            <AppRoutes />
-            <ToastContainer />
-          </div>
+        <Navbar />
+        <div className="content">
+          <AppRoutes />
+          <ToastContainer />
+        </div>
       </Router>
     </ModelProvider>
   );

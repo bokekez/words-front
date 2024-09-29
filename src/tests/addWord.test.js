@@ -3,14 +3,14 @@ import AddWord from '../components/AddWord';
 import { ModelContext } from '../context/modelContext';
 import { toast } from 'react-toastify';
 import '@testing-library/jest-dom';
-import { addWordApi } from '../apiService/wordsApi'; 
+import { addWordApi } from '../apiService/wordsApi';
 
 jest.mock('react-toastify', () => ({
   toast: {
     warning: jest.fn(),
-    success: jest.fn()
+    success: jest.fn(),
   },
-}))
+}));
 
 jest.mock('../apiService/wordsApi', () => ({
   addWordApi: jest.fn(),
@@ -20,13 +20,13 @@ jest.mock('../components/Autocomplete', () => {
   return function MockAutocomplete({ onSelect }) {
     return (
       <div>
-        <input 
-          placeholder="Type synonym" 
+        <input
+          placeholder="Type synonym"
           onChange={(e) => {
             if (e.target.value === 'Happy') {
-              onSelect({ word: 'Happy', synonym: ["Joyful", "Cheerful"] });
+              onSelect({ word: 'Happy', synonym: ['Joyful', 'Cheerful'] });
             }
-          }} 
+          }}
         />
       </div>
     );
@@ -44,8 +44,11 @@ describe('AddWord Component', () => {
 
   test('renders the Add Word form correctly', () => {
     renderWithModelContext('basic');
-    
-    expect(screen.getByLabelText(/Word:/i)).toBeInTheDocument();
+
+    const openSynonyms = screen.getByText(/Add synonyms/);
+    fireEvent.click(openSynonyms);
+
+    expect(screen.getByLabelText(/Word to add:/i)).toBeInTheDocument();
     expect(screen.getByText(/Find Synonyms:/i)).toBeInTheDocument();
     expect(screen.getByText(/No synonyms to add/i)).toBeInTheDocument();
   });
@@ -67,6 +70,9 @@ describe('AddWord Component', () => {
 
   test('adds synonyms using Autocomplete', () => {
     renderWithModelContext('basic');
+
+    const openSynonyms = screen.getByText(/Add synonyms/);
+    fireEvent.click(openSynonyms);
 
     const autocompleteInput = screen.getByPlaceholderText('Type synonym');
     fireEvent.change(autocompleteInput, { target: { value: 'Happy' } });

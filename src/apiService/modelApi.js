@@ -1,11 +1,11 @@
 import { showToastifySuccess, showToastifyError } from '../utils/toast';
 const API_URL = process.env.REACT_APP_API_URL;
 
-export const getActiveModel = async () => { 
+export const getActiveModel = async () => {
   try {
     const response = await fetch(`${API_URL}/modelSelector/activeModel`);
     const data = await response.json();
-    return data; 
+    return data;
   } catch (error) {
     return error;
   }
@@ -19,18 +19,18 @@ export const switchModel = async (model) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        modelName: model
+        modelName: model,
       }),
     });
 
     if (response.ok) {
-      const data = await response.json()
+      const data = await response.json();
       showToastifySuccess(`${data.message}!`, model);
-      return data
-    } 
+      return data;
+    }
     const errorData = await response.json();
     showToastifyError(`Error: ${errorData.message}`, 'addingError');
   } catch (error) {
     showToastifyError('Failed to add word.', 'wentWrong');
   }
-}
+};
