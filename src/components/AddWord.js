@@ -77,7 +77,7 @@ const AddWord = () => {
       <h2>Add a New Word</h2>
       <form onSubmit={handleSubmit}>
         <div className="add-word-checkbox">
-          <input type="checkbox" onClick={hadleStrict} value={strict}/>
+          <input type="checkbox" onClick={hadleStrict} value={strict} defaultChecked="true"/>
           <label className="add-word-checkbox-label">Strict?</label>
         </div>
         <div>
@@ -90,7 +90,6 @@ const AddWord = () => {
             placeholder="Enter word"
           />
         </div>
-        
         
           <div>
             <p>Synonyms:</p>
