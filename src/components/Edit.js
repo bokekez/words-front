@@ -14,8 +14,6 @@ const Edit = ({ wordParam: word, onClose }) => {
 
   const navigate = useNavigate();
 
-  console.log(synonyms);
-
   const addSynonym = (selectedWord) => {
     if (!synonyms.includes(selectedWord.word)) {
       setSynonyms([...synonyms, selectedWord]);

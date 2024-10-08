@@ -19,8 +19,7 @@ const Model = () => {
     };
 
     getModel();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [model]);
+  }, [model, setModel]);
 
   const handleModelChange = async (value) => {
     const result = await switchModel(value);
