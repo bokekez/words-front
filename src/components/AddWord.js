@@ -13,8 +13,6 @@ const AddWord = () => {
   const [synomyAsWord, setSynonymAsWord] = useState('');
   const { model } = useContext(ModelContext);
 
-  console.log(strict);
-
   const addSynonym = (selectedWord) => {
     if (!synonym.some((el) => el.word === selectedWord.word)) {
       setSynonym([...synonym, selectedWord]);
