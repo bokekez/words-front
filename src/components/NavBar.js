@@ -4,7 +4,7 @@ import Model from './Model';
 import '../componentStyles/NavBar.css';
 
 const Navbar = () => {
-  const navBarClass = `nav-link (navData) => (navData.isActive ? "active" : 'none'`
+  const navBarClass = `nav-link (navData) => (navData.isActive ? "active" : 'none'`;
   return (
     <nav className="navbar">
       <div className="nav-container">

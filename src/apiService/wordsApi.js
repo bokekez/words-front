@@ -14,7 +14,7 @@ export const allWordsApi = async (params) => {
   }
 };
 
-export const addWordApi = async (word, synonym) => {
+export const addWordApi = async (word, synonym, strict) => {
   try {
     const response = await fetch(`${API_URL}/words`, {
       method: 'POST',
@@ -24,6 +24,7 @@ export const addWordApi = async (word, synonym) => {
       body: JSON.stringify({
         word,
         synonym: synonym,
+        strict,
       }),
     });
 
