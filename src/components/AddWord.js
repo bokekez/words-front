@@ -10,14 +10,13 @@ const AddWord = () => {
   const [synonym, setSynonym] = useState([]);
   const [addSyn, setAddSyn] = useState(false);
   const [strict, setStrict] = useState(true);
-  const [synomyAsWord, setSynonymAsWord] = useState('');
+  const [synomyAsWord, setSynonymAsWord] = useState('')
   const { model } = useContext(ModelContext);
 
-  console.log(synomyAsWord, synonym);
+  console.log(strict)
 
   const addSynonym = (selectedWord) => {
-    console.log(selectedWord);
-    if (!synonym.some((el) => el.word === selectedWord.word)) {
+    if (!synonym.some(el => el.word === selectedWord.word)) {
       setSynonym([...synonym, selectedWord]);
     }
   };
@@ -64,21 +63,21 @@ const AddWord = () => {
   const handleSynAsWord = () => {
     const synToAdd = {
       word: synomyAsWord,
-      synonym: [],
-    };
-    addSynonym(synToAdd);
-  };
+      synonym: []
+    }
+    addSynonym(synToAdd)
+  }
 
+  const hadleStrict = () => {
+    setStrict(strict ? false : true)
+  }
+  
   return (
     <div className="add-word-container">
       <h2>Add a New Word</h2>
       <form onSubmit={handleSubmit}>
         <div className="add-word-checkbox">
-          <input
-            type="checkbox"
-            onClick={() => setStrict(strict ? false : true)}
-            value={strict}
-          />
+          <input type="checkbox" onClick={hadleStrict} value={strict}/>
           <label className="add-word-checkbox-label">Strict?</label>
         </div>
         <div>
@@ -91,47 +90,48 @@ const AddWord = () => {
             placeholder="Enter word"
           />
         </div>
-
-        <div>
-          <p>Synonyms:</p>
-          {synonym.length ? (
-            <div>
-              {synonym.map((syn) => (
-                <div className="synonym-element" key={syn}>
-                  <p className="synonym-element-syn">{syn.word}</p>
-                  <p className="synonym-element-syn-synonym">
-                    Synonyms of {syn.word}: {syn.synonym.join(', ')}
-                  </p>
-                  <button
-                    className="synonym-list-button"
-                    type="button"
-                    onClick={() => removeSynonym(syn)}
-                  >
-                    X
-                  </button>
-                </div>
-              ))}
+        
+        
+          <div>
+            <p>Synonyms:</p>
+            {synonym.length ? (
+              <div>
+                {synonym.map((syn) => (
+                  <div className="synonym-element" key={syn}>
+                    <p className="synonym-element-syn">{syn.word}</p>
+                    <p className="synonym-element-syn-synonym">
+                      Synonyms of {syn.word}: {syn.synonym.join(', ')}
+                    </p>
+                    <button
+                      className="synonym-list-button"
+                      type="button"
+                      onClick={() => removeSynonym(syn)}
+                    >
+                      X
+                    </button>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div>No synonyms to add</div>
+            )}
             </div>
-          ) : (
-            <div>No synonyms to add</div>
-          )}
-        </div>
-        {!addSyn && (
+            {!addSyn && (
           <button
             className="add-word-button syn-button"
             onClick={handleShowSyn}
           >
             Find Synonyms?
           </button>
-        )}
+        )}      
 
-        {addSyn && (
-          <div>
-            <label>Find Synonyms:</label>
-            <Autocomplete onSelect={addSynonym} />
-          </div>
+        {addSyn && (    
+            <div>
+              <label>Find Synonyms:</label>
+              <Autocomplete onSelect={addSynonym} />
+            </div>
         )}
-        {!strict && (
+        {!strict && 
           <div>
             <label htmlFor="word-input">Add synomy as a new word:</label>
             <input
@@ -141,11 +141,9 @@ const AddWord = () => {
               onChange={(e) => setSynonymAsWord(e.target.value)}
               placeholder="Enter word"
             />
-            <button onClick={handleSynAsWord} type="button">
-              Add
-            </button>
+            <button onClick={handleSynAsWord} type="button">Add</button>
           </div>
-        )}
+        }
         <button className="add-word-button" type="submit">
           Add Word
         </button>
