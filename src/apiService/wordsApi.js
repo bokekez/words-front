@@ -7,14 +7,14 @@ export const allWordsApi = async (params) => {
   try {
     const response = await fetch(`${API_URL}/words`);
     const data = await response.json();
-    return data;
+    return data.data;
   } catch (error) {
     showToastifyError(`Error: ${error}`, 'getAllError');
     return error;
   }
 };
 
-export const addWordApi = async (word, synonym) => {
+export const addWordApi = async (word, synonym, strict) => {
   try {
     const response = await fetch(`${API_URL}/words`, {
       method: 'POST',
@@ -24,6 +24,7 @@ export const addWordApi = async (word, synonym) => {
       body: JSON.stringify({
         word,
         synonym: synonym,
+        strict,
       }),
     });
 
@@ -43,14 +44,14 @@ const getAllWordsSearch = async (search) => {
     const params = `${encodeURIComponent(search)}`;
     const response = await fetch(`${API_URL}/words?search=${params}`);
     const data = await response.json();
-    if (data.message) {
+    if (data.message !== 'Success') {
       showToastifyError(
         `Failed to fetch words because ${data.message}`,
         'fetchError'
       );
       return null;
     }
-    return data;
+    return data.data;
   } catch (error) {
     showToastifyError(
       `Failed to fetch words because ${error.message}`,
@@ -63,14 +64,14 @@ export const getWordDetails = async (word) => {
   try {
     const response = await fetch(`${API_URL}/words/${word}`);
     const data = await response.json();
-    if (data.message) {
+    if (data.message !== 'Success') {
       showToastifyError(
         `Failed to fetch words because ${data.message}`,
         'fetchError'
       );
       return null;
     }
-    return data;
+    return data.data;
   } catch (error) {
     showToastifyError(
       `Failed to fetch words because ${error.message}`,
@@ -80,7 +81,6 @@ export const getWordDetails = async (word) => {
 };
 
 export const deleteWord = async (word) => {
-  console.log(word);
   try {
     const response = await fetch(`${API_URL}/words/${word}`, {
       method: 'DELETE',
@@ -101,7 +101,7 @@ export const deleteWord = async (word) => {
       `Word '${word}' deleted successfully!`,
       'deleteSuccess'
     );
-    return data;
+    return data.data;
   } catch (error) {
     showToastifyError(
       `Failed to delete word because ${error.message}`,

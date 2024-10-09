@@ -45,7 +45,7 @@ describe('AddWord Component', () => {
   test('renders the Add Word form correctly', () => {
     renderWithModelContext('basic');
 
-    const openSynonyms = screen.getByText(/Add synonyms/);
+    const openSynonyms = screen.getByText(/Find Synonyms/);
     fireEvent.click(openSynonyms);
 
     expect(screen.getByLabelText(/Word to add:/i)).toBeInTheDocument();
@@ -63,7 +63,7 @@ describe('AddWord Component', () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(addWordApi).toHaveBeenCalledWith('testWord', []);
+      expect(addWordApi).toHaveBeenCalledWith('testWord', [], true);
     });
     expect(wordInput.value).toBe('');
   });
@@ -71,7 +71,7 @@ describe('AddWord Component', () => {
   test('adds synonyms using Autocomplete', () => {
     renderWithModelContext('basic');
 
-    const openSynonyms = screen.getByText(/Add synonyms/);
+    const openSynonyms = screen.getByText(/Find Synonyms/);
     fireEvent.click(openSynonyms);
 
     const autocompleteInput = screen.getByPlaceholderText('Type synonym');
