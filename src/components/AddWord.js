@@ -136,16 +136,24 @@ const AddWord = () => {
         {!strict && (
           <div>
             <label htmlFor="word-input">Add synomy as a new word:</label>
+            <div>
             <input
               id="word-input"
               type="text"
               value={synomyAsWord}
               onChange={(e) => setSynonymAsWord(e.target.value)}
               placeholder="Enter word"
-            />
-            <button onClick={handleSynAsWord} type="button">
-              Add
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleSynAsWord();
+                }
+              }}
+            >
+            </input>
+            <button onClick={handleSynAsWord} type="button" className="add-word-button nonStrict">
+              Add Non Strict Synonym
             </button>
+            </div>
           </div>
         )}
         <button className="add-word-button" type="submit">

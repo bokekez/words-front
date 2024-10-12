@@ -108,3 +108,7 @@
 .add-word-container .add-word-checkbox-label {
   margin-bottom: 0px;
 }
+
+.nonStrict{
+  background-color: #9dcf14;
+}
